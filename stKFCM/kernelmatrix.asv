@@ -1,0 +1,13 @@
+function [K] = kernelmatrix (x1 , x2 ,sigma)
+m=size(x1,1);
+n=size(x2,1);
+
+%making a temp. matrix having repeated columns
+X1(:,1:n)= x1 ;
+X2(1:m,:)= x2' ;
+
+%evaluating the kernel using ( ||xi - xj||^2 =sum ( xi^2 + xj^2 - 2*xi*xj ) )
+k = X1.*X1 + X2.*X2 - 2*( x1 * x2' );
+K = exp ( sigma * k );
+
+
